@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sheet"
 import CommonFrom from '../common/From'
 import { addProductFormElements } from '@/config'
+import ProductImageUpload from './ImageUpload'
 
 const initialFormData = {
   title: "",
@@ -23,7 +24,8 @@ const initialFormData = {
 const AdminProduct = () => {
   const [openCreateProductDialog, setOpenCreateProductDialog] = useState(false)
   const [formData, setFormData] = useState(initialFormData)
-
+const [imageFile, setImageFile] = useState(null)
+const [uploadedimageUrl, setUploadedimageUrl] = useState("") 
   const onsubmit = (e) => {
     e.preventDefault()
     console.log("Form submitted:", formData)
@@ -44,8 +46,8 @@ const AdminProduct = () => {
             <SheetTitle className='text-2xl font-bold'>Add New Product</SheetTitle>
             <SheetDescription>Add a new product to the catalog</SheetDescription>
           </SheetHeader>
-
-          <div className='py-6'>
+          <ProductImageUpload imageFile={imageFile} setImageFile={setImageFile} uploadedimageUrl={uploadedimageUrl} setUploadedimageUrl={setUploadedimageUrl}/>
+          <div className='px-6 '>
             <CommonFrom
             fromControls={addProductFormElements}
               formData={formData}
